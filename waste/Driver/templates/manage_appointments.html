@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Manage Appointment</h1>
+  <p>Date: {{ appointment.date }}</p>
+  <p>Time: {{ appointment.time }}</p>
+  <p>Patient Name: {{ appointment.patient_name }}</p>
+  <p>Description: {{ appointment.description }}</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="accept">Accept</button>
+    <button type="submit" name="delete">Delete</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base1.html' %}
+{% block title%}
+List Of Bin
+{% endblock %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <h2 class="text-center">Bin List</h2>
+
+    <table class="table table-pink table-hover table-bordered text-center">
+        <thead>
+            <tr class="bg-primary text-white ">
+                <th>No.</th>
+                <th>Type of Bin</th>
+                <th>Driver Name</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if bin %}
+            {% for e in bin %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{e.grabage_type}}</td>
+                <td>{{e.driver.driver_full_name}}</td>
+                <td>{{e.address}}</td>
+                <td>{{e.status}}</td>
+                <td class="btn-group"><a href="{% url 'Customer:order.create' e.id %}" class="btn btn-warning">Request</a><a href="#" class="btn btn-danger">Cancel</a>
+                    </td>
+                
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4"><span>
+                        No Record Found !
+                    </span>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+</div>
+
+
+
+{% endblock %}

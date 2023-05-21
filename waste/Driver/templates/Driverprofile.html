@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>{{driver.driver_full_name}}</h3>
+            <hr>
+            <img src="{{driver.image.url}}" alt="" class="img-fluid" style="height: 2500; object-fit: cover;">
+        </div>
+        <div class="col-md-4">
+            <h3>Detail Information</h3>
+            <hr>
+            <p><span class="font-weight-bold">Name: </span> {{driver.driver_full_name}}</p>
+            <p><span class="font-weight-bold">Username: </span> {{driver.user.username}}</p>
+            <p><span class="font-weight-bold">Email: </span> {{driver.user.email}}</p>
+            <p><span class="font-weight-bold">Address: </span> {{driver.address}}</p>
+            <p><span class="font-weight-bold">Joined on: </span> {{driver.joined_on}}</p>
+            <p><span class="font-weight-bold">License No: </span> {{driver.license_no}}</p>
+
+        </div>
+
+    </div>
+    <!-- <table class="table table-pink table-hover table-bordered text-center">
+        <thead>
+            <tr class="bg-primary text-white ">
+                <th>No.</th>
+                <th>Driver Name</th>
+                <th>Address</th>
+                <th>Join date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if bin %}
+            {% for e in bin %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{e.grabage_type}}</td>
+                <td>{{e.address}}</td>
+                <td>{{e.price}}</td>
+                <td>
+                    <a href="{% url 'Driver:driver-editBins' e.id %}" class="btn btn-warning">Edit</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4"><span>
+                        No Record Found !
+                    </span>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table> -->
+</div>
+{% endblock %}

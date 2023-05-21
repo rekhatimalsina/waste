@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Geolocation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map" style="width:1200px; height: 1200px"></div>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+
+    <script>
+        
+        let lat = data.latitude;
+        let lan = data.longitude;
+        let lat1 = 27.739126;
+        let lan1 = 85.191658;
+        //var marker = L.marker([27.672792081613572, 85.31846306094256], { icon: taxiIcon }).addTo(map);
+        L.Routing.control({
+            waypoints: [
+                L.latLng(lat, lan),
+                L.latLng(lat1, lan1)
+            ]
+        }).addTo(map);
+
+                //var marker = L.marker([27.672792081613572, 85.31846306094256], { icon: taxiIcon }).addTo(map);
+               L.Routing.control({
+                    waypoints: [
+                        L.latLng(data.latitude, data.longitude),
+
+                    ]
+                }).addTo(map);
+
+        $.ajax({
+            url: '/get-lat-long/',
+            dataType: 'json',
+            success: function (data) {
+                // Do something with the data
+                data.latitude;
+            data.longitude;
+                let lat1 = 27.739126;
+                let lan1 = 85.191658;
+               
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form  method="POST"action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <label for="request">Request Bins</label>
+    <select name="status">
+        <option value="Accept">Accept</option>
+        <option value="Decline">Decline</option>
+    </select>
+    <button type="submit">  Go  </button>
+</form>
+
+{% endblock %}

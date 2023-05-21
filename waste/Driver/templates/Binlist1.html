@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+
+<div class="container ">
+    <h2 class="text-center">Driver List</h2>
+
+
+    <table class="table table-pink table-hover table-bordered text-center">
+        <thead>
+            <tr class="bg-primary text-white ">
+                <th>No.</th>
+                <th>Customer Name</th>
+                <th>Grabage Type</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if bin %}
+            {% for e in bin %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{e.user.username}}</td>
+                <td>{{e.grabage_type}}</td>
+                <td>{{e.address}}</td>
+                <td>{{e.status}}</td>
+                
+                <td>
+                    <a href="{% url 'Driver:driver-editBins' e.id %}" class="btn btn-warning">Response</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4"><span>
+                        No Record Found !
+                    </span>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock %}

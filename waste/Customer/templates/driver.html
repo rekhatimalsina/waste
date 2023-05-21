@@ -1,0 +1,48 @@
+{% extends 'base1.html' %}
+{% block title%}
+List Of Bin
+{% endblock %}
+{% block content %}
+
+
+<div class="container ">
+    <h2 class="text-center">Driver List</h2>
+
+    <table class="table table-pink table-hover table-bordered text-center">
+        <thead>
+            <tr class="bg-primary text-white ">
+                <th>No.</th>
+                <th>Driver Name</th>
+                <th>Address</th>
+                <th>Join date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if driver %}
+            {% for e in driver %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+
+                <td>{{e.driver_full_name}}</td>
+                <td>{{e.address}}</td>
+                <td>{{e.joined_on}}</td>
+                
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4"><span>
+                        No Record Found !
+                    </span>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

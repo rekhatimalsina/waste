@@ -1,0 +1,49 @@
+{% extends 'base1.html' %}
+{% block title%}
+List Of Bin
+{% endblock %}
+{% block content %}
+
+
+<div class="container ">
+    <h2 class="text-center">Bin List</h2>
+
+    <table class="table table-pink table-hover table-bordered text-center">
+        <thead>
+            <tr class="bg-primary text-white ">
+                <th>S.No.</th>
+                <th>Driver Name</th>
+                <th>Type of Grabage</th>
+                <th>Status</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if order %}
+            {% for e in order %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{e.bin.driver.driver_full_name}}</td>
+                <td>{{e.bin.grabage_type}}</td>
+                <td>{{e.bin.status}}</td>
+                <td>{{e.total}}</td>
+                
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4"><span>
+                        No Record Found !
+                    </span>
+                </td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

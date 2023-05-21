@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap css cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <!-- Bootstrap icons cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        .content-right{
+            float: left !important;
+        }
+        .bg-custom-color{
+            background-color: rgb(89, 216, 102) !important;
+        }
+        .bg-custom-color1{
+            background-color: rgb(167, 245, 171);
+        }
+        ul li:hover{
+            background-color: rgb(186, 218, 167) !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <main class="d-flex flex-nowrap">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-custom-color" style="width: 280px; height: 600px;">
+                    <!-- <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;"> -->
+                    <a href="/"
+                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <i class="bi bi-house me-3"></i>
+                        <span class="fs-4">Trash Troop</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="{% url 'Customer:order.list'%}" class="nav-link text-white" aria-current="page">
+                                <i class="bi bi-house"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Customer:bin.create'%}" class="nav-link text-white">
+                                <i class="bi bi-trash"></i>
+                                Add Bin
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Customer:bin.list' %}" class="nav-link text-white">
+                                <i class="bi bi-trash3-fill"></i>
+                                List Bin
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Customer:customer-driverlist' %}" class="nav-link text-white">
+                                <i class="bi bi-truck"></i>
+                                List Of Driver
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Customer:customer-profile'%}" class="nav-link text-white">
+                                <i class="bi bi-person-bounding-box"></i>
+                                User Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Customer:customer-logout'%}" class="nav-link text-white">
+                                <i class="bi bi-box-arrow-right"></i>
+                                LOGOUT
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div class="col-md-6 mt-3">
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-around">
+                        <button class="btn btn-primary btn-lg">add user accounts</button>
+                        <button class="btn btn-primary btn-lg">view user accounts</button>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div> -->
+            
+
+         
+                <div class=" shadow-lg p-5 bg-custom-color1">
+                    {% block content %}
+            
+                    {% endblock %} 
+            </div>
+            
+
+            
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid bg-secondary ">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 border-top">
+          <div class="col mb-3">
+            <p>Add image here</p>
+          </div>
+    
+          <div class="col mb-3">
+    
+          </div>
+    
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+    
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+    
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    
+      <div class="b-example-divider"></div>
+</body>
+
+</html>
+
+
+
+    

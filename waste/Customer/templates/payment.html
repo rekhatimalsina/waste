@@ -1,0 +1,25 @@
+{% extends 'base1.html' %}
+{% block title%}
+List Of Bin
+{% endblock %}
+{% block content %}
+ <h1>Total Payment</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <p> Total:  Rs.{{order.total}} </p>
+        <select name="payment_method">
+            <option value="Cash on delivery">Cash on delivery</option>
+            <option value="Cash on delivery">Cash on delivery</option>
+        </select>
+
+        <button type="submit" onclick="showAlert"><a href="{% url 'Customer:order.list'%}">submit</a></button>
+
+    </form>
+    <script>
+        function showAlert() {
+        alert("Button clicked!");
+      }
+    </script>
+    
+    {% endblock %}

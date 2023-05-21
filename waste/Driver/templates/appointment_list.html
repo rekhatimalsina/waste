@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Appointments</h1>
+<ul>
+{% for appointment in appointments %}
+    <li>{{ appointment.date }} at {{ appointment.time }} - {{ appointment.patient_name }}</li>
+{% empty %}
+    <li>No appointments found.</li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
