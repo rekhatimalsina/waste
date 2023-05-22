@@ -1,36 +1,32 @@
-{% extends 'base1.html' %}
-{% block title%}
-List Of Bin
-{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
 {% block content %}
 
 
 <div class="container ">
-    <h2 class="text-center">Driver List</h2>
+    <h2 class="text-center">Customer List</h2>
+
 
     <table class="table table-pink table-hover table-bordered text-center">
         <thead>
             <tr class="bg-primary text-white ">
                 <th>No.</th>
-                <th>Driver Name</th>
-                <th>Address</th>
-                <th>Join date</th>
-                <th>action</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                
             </tr>
         </thead>
 
         <tbody>
-            {% if driver %}
-            {% for e in driver %}
+            {% if bin %}
+            {% for e in bin %}
             <tr>
                 <td>{{ forloop.counter}}</td>
+                <td>{{e.user.username}}</td>
+                <td>{{e.user.email}}</td>
 
-                <td>{{e.driver_full_name}}</td>
-                <td>{{e.address}}</td>
-                <td>{{e.joined_on}}</td>
-                <td>
-                    <a href="{% url 'Customer:drivermap' e.id %}" class="btn btn-warning">Bin Path</a>
-                </td>
             </tr>
             {% endfor %}
             {% else %}
@@ -44,8 +40,7 @@ List Of Bin
             {% endif %}
         </tbody>
     </table>
+    
 </div>
-
-
 
 {% endblock %}

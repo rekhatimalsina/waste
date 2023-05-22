@@ -6,7 +6,7 @@
 
 
 <div class="container ">
-    <h2 class="text-center">Driver List</h2>
+    <h2 class="text-center">Bin List</h2>
 
 
     <table class="table table-pink table-hover table-bordered text-center">
@@ -33,6 +33,7 @@
                 
                 <td>
                     <a href="{% url 'Driver:driver-editBins' e.id %}" class="btn btn-warning">Response</a>
+                    <a href="{% url 'Driver:map' e.id %}" class="btn btn-warning">Bin Path</a>
                 </td>
 
             </tr>

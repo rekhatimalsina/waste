@@ -75,11 +75,8 @@ def bin_store(request):
     service.Addbin(request)
     return redirect("Customer:bin.list")
 
-
-
 def getDriverGroupList():
     return Driver.objects.all()
-
 
 def bin_edit(request, id):  
     bin = service.getBinId(id)
@@ -97,16 +94,15 @@ def bin_update(request, id):
     service.updateBin(request,id)
     return redirect('bin.list')
 
-
 def bin_delete(request, id):  
     service.deleteBin(request,id)
-    return redirect('bin.list')
+    return redirect('Customer:bin.list')
 
 
 class CustomerLoginView(FormView):
     template_name = "CustomerLogin.html"
     form_class = CustomerLoginForm
-    success_url = reverse_lazy("Customer:bin.create")
+    success_url = reverse_lazy("Customer:bin.list")
 
     def form_valid(self, form):
         uname = form.cleaned_data.get("username")
@@ -195,3 +191,21 @@ def payment(request,id):
         'order' : order
     }
     return render(request,'payment.html',data)
+
+
+def customerMap(request,id):
+    driver=Driver.objects.get(id=id) 
+    # Retrieve latitude and longitude data for two different places from your backend source
+    g = geocoder.ip('me')
+    place1_latitude=g.lat
+    place1_longitude = g.lng
+    place2_latitude =driver.latitude1
+    place2_longitude = driver.longitude1
+ # Pass the location data to the template
+    context = {
+        'place1_latitude': place1_latitude,
+        'place1_longitude': place1_longitude,
+        'place2_latitude': place2_latitude,
+        'place2_longitude': place2_longitude,
+    }
+    return render(request, 'mapdriver.html', context)

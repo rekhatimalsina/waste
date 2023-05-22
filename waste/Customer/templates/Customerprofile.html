@@ -21,44 +21,5 @@
         
     </div>
 
-    <div class="col-md-8">
-        <h3>Previous Orders</h3>
-        <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>SN</th>
-                    <th>Order ID</th>
-                    <th>Amount</th>
-                    <th>Ordered on</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if order %}
-                {% for e in order %}
-                <tr>
-                    <td>{{ forloop.counter}}</td>
-                    <td>{{e.user.username}}</td>
-                    <td>{{e.bin.grabage_type}}</td>
-                    <td>{{e.bin.driver.driver_full_name}}</td>
-                    <td>{{e.total}}</td>
-                    <td><a href="{% url 'Customer:order.create' e.id %}" class="btn btn-outline-warning">Edit</a>
-                        </td>
-                    
-                </tr>
-                {% endfor %}
-                {% else %}
-                <tr>
-                    <td colspan="4"><span>
-                            No Record Found !
-                        </span>
-                    </td>
-                </tr>
     
-                {% endif %}               
-            </tbody>
-        </table>
-    </div>
-</div>
 {% endblock %}

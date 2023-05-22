@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+</head>
+<body>
+    <br>
+    <br>
+    <a href="{% url 'Customer:customer-driverlist' %}" class="btn btn-warning">Back</a>
+    <br>
+    <br>
+    <div id="map" style="height: 400px;"></div>
+
+    <div id="map" style="width:1200px; height: 1200px"></div>
+
+   
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <script>
+        var map = L.map('map').setView(["{{ place1_latitude }}", "{{ place1_longitude }}"], 11);
+        mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Leaflet &copy; ' + mapLink + ', contribution', maxZoom: 18 }).addTo(map);
+
+
+        
+        L.Routing.control({
+            waypoints: [
+                L.latLng("{{ place1_latitude }}", "{{ place1_longitude }}"),
+                L.latLng("{{place2_latitude }}", "{{ place2_longitude }}")
+            ]
+        }).addTo(map);
+    </script>
+
+   
+</body>
+</html>

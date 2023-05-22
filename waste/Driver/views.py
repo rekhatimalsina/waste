@@ -5,7 +5,7 @@ from Customer.models import AddBins
 from .forms import *
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
-
+import geocoder
 from django.http import HttpResponse
 import csv
 from . import service
@@ -14,13 +14,17 @@ class DriverRegistration(CreateView):
     template_name = "registration1.html"
     form_class = DriverRegistrationForm
     success_url = reverse_lazy("Driver:driver-profile")
-
-    def form_valid(self, form):
+    
+    def form_valid(self, form): 
+        g = geocoder.ip('me')
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         email = form.cleaned_data.get("email")
         user = User.objects.create_user(username, email, password)
         form.instance.user = user
+        form.instance.latitude1 =g.lat
+        form.instance.longitude1 = g.lng
+        driver=form.save()
         login(self.request, user)
         return super().form_valid(form)
 
@@ -39,7 +43,7 @@ def front(request):
 class DriverLoginView(FormView):
     template_name = "DriverLogin.html"
     form_class = DriverLoginForm
-    success_url = reverse_lazy("Driver:driver-profile")
+    success_url = reverse_lazy("Driver:driver-binlist")
 
     def form_valid(self, form):
         uname = form.cleaned_data.get("username")
@@ -82,9 +86,6 @@ class DriverLogoutView(View):
     def get(self, request):
         logout(request)
         return redirect("Driver:driver-login")
-    
-
-
 
 def appointment_list(request):
     appointments = Appointment.objects.all()
@@ -100,20 +101,25 @@ def appointment_create(request):
         form = AppointmentForm()
     return render(request, 'appointment_form.html', {'form': form})
 
-
-
 def listBins(request):
     user = request.user
     print(user)
     driver = Driver.objects.get(user=user)
-    bin = AddBins.objects.filter(driver=driver).select_related('driver')
-   
+    bin = AddBins.objects.filter(driver=driver).select_related('driver') 
     data={
         'bin':bin 
     }
     return render(request,'Binlist1.html',data)
 
-
+def listBins1(request):
+    user = request.user
+    print(user)
+    driver = Driver.objects.get(user=user)
+    bin = AddBins.objects.filter(driver=driver).select_related('driver') 
+    data={
+        'bin':bin 
+    }
+    return render(request,'locationTrap.html',data)
 
 def editbins(request, id):
     bins = AddBins.objects.get(id=id)
@@ -121,10 +127,8 @@ def editbins(request, id):
         form = AddBin1s(request.POST or None, request.FILES or None, instance=bins)
         if form.is_valid():
             form.save()
-
             messages.add_message(request, messages.INFO, f"{form.cleaned_data.get('name')} has been added")
             return redirect('Driver:driver-binlist')
-
         context = {
             'form': form,
         }
@@ -134,10 +138,8 @@ def editbins(request, id):
         form = AddBin1s(request.POST or None, request.FILES or None, instance=bins)
         if form.is_valid():
             form.save()
-
             messages.add_message(request, messages.INFO, f"{form.cleaned_data.get('name')} has been added")
             return redirect('Driver:driver-binlist')
-
         context = {
             'form': form,
         }
@@ -157,11 +159,37 @@ def acceptList(request):
     print(user)
     driver = Driver.objects.get(user=user)
     bin = AddBins.objects.filter(status="ACCEPT").all()
-   
     data={
         'bin':bin 
     }
     return render(request,'acceptBin.html',data)
 
-def googlemap(request):
-    return render(request,"googleMap.Html")
+
+def map_view(request,id):
+    addbin=AddBins.objects.get(id=id) 
+    # Retrieve latitude and longitude data for two different places from your backend source
+    g = geocoder.ip('me')
+    place1_latitude=g.lat
+    place1_longitude = g.lng
+    place2_latitude =addbin.latitude
+    place2_longitude = addbin.longitude
+ # Pass the location data to the template
+    context = {
+        'place1_latitude': place1_latitude,
+        'place1_longitude': place1_longitude,
+        'place2_latitude': place2_latitude,
+        'place2_longitude': place2_longitude,
+    }
+    print(context)
+
+    return render(request, 'map1.html', context)
+
+def customerlist(request):
+    user = request.user
+    print(user)
+    driver = Driver.objects.get(user=user)
+    bin = AddBins.objects.filter(driver=driver).select_related('driver') 
+    data={
+        'bin':bin 
+    }
+    return render(request,'customerlist.html',data)

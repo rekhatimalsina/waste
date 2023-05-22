@@ -15,7 +15,7 @@ Add Employee
     <label for="driver">Driver: </label>
     <select class="form-select form-control" name="driver" id="driver" aria-label="Default select example">
         {% for i in driver %}
-        <option value="{{ i.id }}">{{ i.driver_full_name}}{{ i.address}}</option>
+        <option value="{{ i.id }}">{{ i.driver_full_name}}</option>
         {% endfor %}
     </select>
 
@@ -32,10 +32,7 @@ Add Employee
     <label for="address">Address</label>
     <input type="text" class="form-control" id="address" name="address"
         value="{% if bin.address %}{{bin.address}}{% endif %}" placeholder="Address">
-
-        <p id="location">Click the button to get your current location:</p>
-        <button id="get-location">Get Current Location</button>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220.79059443772917!2d85.29583528568119!3d27.697225585327125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb185c49da9561%3A0xe001b2e6ab749ea9!2sREFRIGERATOR%20WORKSHOP!5e0!3m2!1sen!2snp!4v1682330563380!5m2!1sen!2snp" width="465" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.442240473115!2d85.31590211020934!3d27.672723326919993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19cb05097d61%3A0x66d083a187176a11!2sVirinchi%20College-%20Kumaripati!5e0!3m2!1sen!2snp!4v1684775655988!5m2!1sen!2snp" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 <br>
     <button type="submit" class="btn btn-submit btn-success" > {%if bin %} Update {% else %} Submit {% endif %}</button>

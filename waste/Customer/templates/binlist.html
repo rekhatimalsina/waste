@@ -29,7 +29,7 @@ List Of Bin
                 <td>{{e.driver.driver_full_name}}</td>
                 <td>{{e.address}}</td>
                 <td>{{e.status}}</td>
-                <td class="btn-group"><a href="{% url 'Customer:order.create' e.id %}" class="btn btn-warning">Request</a><a href="#" class="btn btn-danger">Cancel</a>
+                <td class="btn-group"><a href="{% url 'Customer:order.create' e.id %}" class="btn btn-warning">Request</a><a href="{% url 'Customer:bin.delete' e.id %}" class="btn btn-danger">Cancel</a>
                     </td>
                 
             </tr>

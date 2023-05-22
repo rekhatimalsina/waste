@@ -20,9 +20,9 @@ urlpatterns = [
     path('update/<int:id>', views.bin_update, name='bin.update'),
     path('delete/<int:id>', views.bin_delete, name='bin.delete'),
 
-
     path('orderList/', views.orderList, name='order.list'),
     path('addorder/<int:id>', views.order_view, name='order.create'),
     path('payment/<int:id>',views.payment,name="order.payment"),
     path('lati',views.get_lat_long,name='lat'),
+    path('driverlocation/<int:id>', views.customerMap, name='drivermap'),
 ]

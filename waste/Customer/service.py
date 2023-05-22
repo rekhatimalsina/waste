@@ -58,7 +58,7 @@ def updateBin(request,id):
     bin.save()
     return "Sucess"
 
-def deleteBin(id):
+def deleteBin(request,id):
     bin = AddBins.objects.get(id = id)
     bin.delete()
     return "success"
